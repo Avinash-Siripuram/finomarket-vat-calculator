@@ -52,3 +52,7 @@ ktor {
         archiveFileName.set("ktor-app.jar")
     }
 }
+
+application {
+    mainClass.set("com.example.challenge.ApplicationKt")
+}
