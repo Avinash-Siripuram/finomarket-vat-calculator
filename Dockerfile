@@ -5,7 +5,7 @@ WORKDIR /home/gradle/src
 RUN gradle buildFatJar --no-daemon
 
 # Stage 2: Create a lightweight runtime image
-FROM openjdk:17-slim
+FROM eclipse-temurin:17-jre-alpine
 EXPOSE 8080
 RUN mkdir /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-app.jar
