@@ -104,8 +104,8 @@ This repository is pre-configured to build and run on **Railway**.
 2. Connect your GitHub repository.
 3. Add a **PostgreSQL** database and a **Redis** service.
 4. Bind the following environment variables to the web service:
-   * `SPRING_DATASOURCE_URL` = `jdbc:postgresql://${{Postgres.POSTGRES_HOST}}:${{Postgres.POSTGRES_PORT}}/${{Postgres.POSTGRES_DB}}`
-   * `SPRING_DATASOURCE_USERNAME` = `${{Postgres.POSTGRES_USER}}`
-   * `SPRING_DATASOURCE_PASSWORD` = `${{Postgres.POSTGRES_PASSWORD}}`
-   * `REDIS_HOST` = `${{Redis.REDIS_HOST}}`
-   * `REDIS_PORT` = `${{Redis.REDIS_PORT}}`
+   * `SPRING_DATASOURCE_URL` = `jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}`
+   * `SPRING_DATASOURCE_USERNAME` = `${{Postgres.PGUSER}}`
+   * `SPRING_DATASOURCE_PASSWORD` = `${{Postgres.PGPASSWORD}}`
+   * `REDIS_HOST` = `${{Redis.REDISHOST}}`
+   * `REDIS_PORT` = `${{Redis.REDISPORT}}`
