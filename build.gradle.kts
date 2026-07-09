@@ -1,43 +1,48 @@
 plugins {
     kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22"
-    kotlin("plugin.jpa") version "1.9.22"
-    id("org.springframework.boot") version "3.2.2"
-    id("io.spring.dependency-management") version "1.1.4"
+    kotlin("plugin.serialization") version "1.9.22"
+    id("io.ktor.plugin") version "2.3.7"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    // Ktor Server core & Netty
+    implementation("io.ktor:ktor-server-core-jvm:2.3.7")
+    implementation("io.ktor:ktor-server-netty-jvm:2.3.7")
     
-    // Database
-    runtimeOnly("org.postgresql:postgresql")
-    implementation("org.flywaydb:flyway-core")
+    // Content Negotiation and Serialization
+    implementation("io.ktor:ktor-server-content-negotiation-jvm:2.3.7")
+    implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:2.3.7")
+    
+    // Status Pages (Global Error Interception)
+    implementation("io.ktor:ktor-server-status-pages-jvm:2.3.7")
+    
+    // Cors
+    implementation("io.ktor:ktor-server-cors-jvm:2.3.7")
+
+    // Database & Connection Pool
+    implementation("org.jetbrains.exposed:exposed-core:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.45.0")
+    implementation("org.jetbrains.exposed:exposed-javatime:0.45.0")
+    implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("org.postgresql:postgresql:42.7.1")
+    implementation("org.flywaydb:flyway-core:9.22.3")
+
+    // Redis
+    implementation("redis.clients:jedis:5.1.0")
+
+    // Logging
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+    implementation("io.ktor:ktor-server-call-logging-jvm:2.3.7")
 
     // Testing
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
+    testImplementation("io.ktor:ktor-server-tests-jvm:2.3.7")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.9.22")
 }
