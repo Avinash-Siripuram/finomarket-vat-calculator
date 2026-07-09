@@ -21,6 +21,21 @@ services:
     volumes:
       - redis_data:/data
 
+  web:
+    build: .
+    container_name: yuno_challenge_web
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/yuno_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - db
+      - redis
+
 volumes:
   postgres_data:
   redis_data:
