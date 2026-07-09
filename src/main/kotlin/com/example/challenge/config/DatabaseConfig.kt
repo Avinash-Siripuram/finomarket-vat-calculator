@@ -26,6 +26,7 @@ object DatabaseConfig {
             maximumPoolSize = 10
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
+            initializationFailTimeout = 0
             validate()
         }
 
