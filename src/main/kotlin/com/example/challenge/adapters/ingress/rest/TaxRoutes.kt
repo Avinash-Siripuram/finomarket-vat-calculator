@@ -16,7 +16,7 @@ val RequestIdKey = AttributeKey<String>("RequestId")
 fun Route.taxRoutes(taxService: TaxIngressPort) {
     route("/tax") {
         
-        POST("/calculate") {
+        post("/calculate") {
             val requestId = UUID.randomUUID().toString()
             call.attributes.put(RequestIdKey, requestId)
 

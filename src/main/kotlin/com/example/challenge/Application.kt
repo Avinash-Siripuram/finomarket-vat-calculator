@@ -99,7 +99,7 @@ fun Application.module() {
     }
 
     // 5. Shutdown hooks
-    monitor.subscribe(ApplicationStopped) {
+    environment.monitor.subscribe(ApplicationStopped) {
         logger.info("Application stopping, cleaning up resources...")
         DatabaseConfig.close()
         RedisConfig.close()

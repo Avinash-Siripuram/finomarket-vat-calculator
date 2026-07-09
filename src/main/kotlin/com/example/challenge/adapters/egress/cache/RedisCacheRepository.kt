@@ -39,7 +39,7 @@ class RedisCacheRepository : CachePort {
         try {
             val json = Json.encodeToString(rate)
             RedisConfig.getResource().use { jedis ->
-                jedis.setex(key, cacheDurationSeconds, json)
+                jedis.setex(key, cacheDurationSeconds.toLong(), json)
                 logger.info("Saved tax rate to Redis cache with key: {}", key)
             }
         } catch (e: Exception) {
