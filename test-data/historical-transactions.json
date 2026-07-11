@@ -1,0 +1,35 @@
+{
+  "_comment": "Batch validation test data: 10 correct, 5 overcharged, 5 undercharged transactions across EUR/USD/GBP/MXN/BRL/CLP. POST this file as-is to /tax/validate-batch (extra underscore fields are ignored).",
+  "_expectedSummary": {
+    "totalTransactions": 20,
+    "correctCount": 10,
+    "overchargedCount": 5,
+    "underchargedCount": 5,
+    "netDiscrepancyByCurrency": { "USD": 64.0, "EUR": 57.1, "GBP": 8.0, "CLP": 171.0, "BRL": -10.0 },
+    "absoluteDiscrepancyByCurrency": { "USD": 64.0, "EUR": 156.9, "GBP": 32.0, "CLP": 171.0, "BRL": 10.0 }
+  },
+  "transactions": [
+    { "id": "h-001", "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR", "chargedTaxAmount": 19.0 },
+    { "id": "h-002", "sellerCountry": "MX", "buyerCountry": "MX", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "MXN", "chargedTaxAmount": 32.0 },
+    { "id": "h-003", "sellerCountry": "FR", "buyerCountry": "ES", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 50.0, "currency": "EUR", "chargedTaxAmount": 10.5 },
+    { "id": "h-004", "sellerCountry": "DE", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 1000.0, "currency": "EUR", "chargedTaxAmount": 0.0 },
+    { "id": "h-005", "sellerCountry": "MX", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 300.0, "currency": "USD", "chargedTaxAmount": 0.0 },
+    { "id": "h-006", "sellerCountry": "BR", "buyerCountry": "CL", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 500.0, "currency": "BRL", "chargedTaxAmount": 0.0 },
+    { "id": "h-007", "sellerCountry": "CO", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 80.0, "currency": "GBP", "chargedTaxAmount": 16.0 },
+    { "id": "h-008", "sellerCountry": "UK", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 45.0, "currency": "GBP", "chargedTaxAmount": 9.0 },
+    { "id": "h-009", "sellerCountry": "ES", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 250.0, "currency": "EUR", "chargedTaxAmount": 47.5 },
+    { "id": "h-010", "sellerCountry": "FR", "buyerCountry": "MX", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 120.0, "currency": "EUR", "chargedTaxAmount": 0.0 },
+
+    { "id": "h-011", "sellerCountry": "MX", "buyerCountry": "ES", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 400.0, "currency": "USD", "chargedTaxAmount": 64.0 },
+    { "id": "h-012", "sellerCountry": "FR", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "EUR", "chargedTaxAmount": 40.0 },
+    { "id": "h-013", "sellerCountry": "UK", "buyerCountry": "UK", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "GBP", "productCategory": "BOOKS", "chargedTaxAmount": 20.0 },
+    { "id": "h-014", "sellerCountry": "CL", "buyerCountry": "CO", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 900.0, "currency": "CLP", "chargedTaxAmount": 171.0 },
+    { "id": "h-015", "sellerCountry": "ES", "buyerCountry": "FR", "productType": "DIGITAL", "transactionType": "B2B", "netAmount": 500.0, "currency": "EUR", "chargedTaxAmount": 105.0 },
+
+    { "id": "h-016", "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 150.0, "currency": "EUR", "chargedTaxAmount": 0.0 },
+    { "id": "h-017", "sellerCountry": "MX", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 60.0, "currency": "GBP", "chargedTaxAmount": 0.0 },
+    { "id": "h-018", "sellerCountry": "FR", "buyerCountry": "FR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 80.0, "currency": "EUR", "chargedTaxAmount": 9.6 },
+    { "id": "h-019", "sellerCountry": "ES", "buyerCountry": "ES", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 300.0, "currency": "EUR", "chargedTaxAmount": 48.0 },
+    { "id": "h-020", "sellerCountry": "BR", "buyerCountry": "BR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 1000.0, "currency": "BRL", "chargedTaxAmount": 160.0 }
+  ]
+}

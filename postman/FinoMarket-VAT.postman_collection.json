@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "FinoMarket VAT Calculation Service",
+    "description": "Cross-border VAT calculation and compliance audit API. Set the `baseUrl` collection variable if the service is not on localhost:8080.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Calculate - LATAM to EU digital B2C (buyer country VAT)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"MX\",\n  \"buyerCountry\": \"DE\",\n  \"productType\": \"DIGITAL\",\n  \"transactionType\": \"B2C\",\n  \"netAmount\": 100.0,\n  \"currency\": \"USD\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate - Domestic Germany physical B2C (19%)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"DE\",\n  \"buyerCountry\": \"DE\",\n  \"productType\": \"PHYSICAL\",\n  \"transactionType\": \"B2C\",\n  \"netAmount\": 250.0,\n  \"currency\": \"EUR\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate - EU to EU B2B (0% reverse charge)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"DE\",\n  \"buyerCountry\": \"FR\",\n  \"productType\": \"PHYSICAL\",\n  \"transactionType\": \"B2B\",\n  \"netAmount\": 1000.0,\n  \"currency\": \"EUR\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate - LATAM export physical to EU (0%, import VAT on buyer)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"BR\",\n  \"buyerCountry\": \"FR\",\n  \"productType\": \"PHYSICAL\",\n  \"transactionType\": \"B2C\",\n  \"netAmount\": 250.0,\n  \"currency\": \"EUR\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate - Reduced rate BOOKS + reporting currency (both stretch goals)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"FR\",\n  \"buyerCountry\": \"DE\",\n  \"productType\": \"PHYSICAL\",\n  \"transactionType\": \"B2C\",\n  \"netAmount\": 100.0,\n  \"currency\": \"EUR\",\n  \"productCategory\": \"BOOKS\",\n  \"reportingCurrency\": \"USD\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Calculate - Invalid country (400 error example)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/calculate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sellerCountry\": \"US\",\n  \"buyerCountry\": \"DE\",\n  \"productType\": \"PHYSICAL\",\n  \"transactionType\": \"B2C\",\n  \"netAmount\": 100.0,\n  \"currency\": \"USD\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Validate Batch - 20 historical transactions (compliance audit)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{baseUrl}}/tax/validate-batch",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"transactions\": [\n    { \"id\": \"h-001\", \"sellerCountry\": \"DE\", \"buyerCountry\": \"DE\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 100.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 19.0 },\n    { \"id\": \"h-002\", \"sellerCountry\": \"MX\", \"buyerCountry\": \"MX\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 200.0, \"currency\": \"MXN\", \"chargedTaxAmount\": 32.0 },\n    { \"id\": \"h-003\", \"sellerCountry\": \"FR\", \"buyerCountry\": \"ES\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 50.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 10.5 },\n    { \"id\": \"h-004\", \"sellerCountry\": \"DE\", \"buyerCountry\": \"FR\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2B\", \"netAmount\": 1000.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-005\", \"sellerCountry\": \"MX\", \"buyerCountry\": \"DE\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 300.0, \"currency\": \"USD\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-006\", \"sellerCountry\": \"BR\", \"buyerCountry\": \"CL\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 500.0, \"currency\": \"BRL\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-007\", \"sellerCountry\": \"CO\", \"buyerCountry\": \"UK\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 80.0, \"currency\": \"GBP\", \"chargedTaxAmount\": 16.0 },\n    { \"id\": \"h-008\", \"sellerCountry\": \"UK\", \"buyerCountry\": \"UK\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 45.0, \"currency\": \"GBP\", \"chargedTaxAmount\": 9.0 },\n    { \"id\": \"h-009\", \"sellerCountry\": \"ES\", \"buyerCountry\": \"DE\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 250.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 47.5 },\n    { \"id\": \"h-010\", \"sellerCountry\": \"FR\", \"buyerCountry\": \"MX\", \"productType\": \"SERVICES\", \"transactionType\": \"B2C\", \"netAmount\": 120.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-011\", \"sellerCountry\": \"MX\", \"buyerCountry\": \"ES\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 400.0, \"currency\": \"USD\", \"chargedTaxAmount\": 64.0 },\n    { \"id\": \"h-012\", \"sellerCountry\": \"FR\", \"buyerCountry\": \"DE\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 200.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 40.0 },\n    { \"id\": \"h-013\", \"sellerCountry\": \"UK\", \"buyerCountry\": \"UK\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 100.0, \"currency\": \"GBP\", \"productCategory\": \"BOOKS\", \"chargedTaxAmount\": 20.0 },\n    { \"id\": \"h-014\", \"sellerCountry\": \"CL\", \"buyerCountry\": \"CO\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 900.0, \"currency\": \"CLP\", \"chargedTaxAmount\": 171.0 },\n    { \"id\": \"h-015\", \"sellerCountry\": \"ES\", \"buyerCountry\": \"FR\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2B\", \"netAmount\": 500.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 105.0 },\n    { \"id\": \"h-016\", \"sellerCountry\": \"DE\", \"buyerCountry\": \"DE\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 150.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-017\", \"sellerCountry\": \"MX\", \"buyerCountry\": \"UK\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 60.0, \"currency\": \"GBP\", \"chargedTaxAmount\": 0.0 },\n    { \"id\": \"h-018\", \"sellerCountry\": \"FR\", \"buyerCountry\": \"FR\", \"productType\": \"DIGITAL\", \"transactionType\": \"B2C\", \"netAmount\": 80.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 9.6 },\n    { \"id\": \"h-019\", \"sellerCountry\": \"ES\", \"buyerCountry\": \"ES\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 300.0, \"currency\": \"EUR\", \"chargedTaxAmount\": 48.0 },\n    { \"id\": \"h-020\", \"sellerCountry\": \"BR\", \"buyerCountry\": \"BR\", \"productType\": \"PHYSICAL\", \"transactionType\": \"B2C\", \"netAmount\": 1000.0, \"currency\": \"BRL\", \"chargedTaxAmount\": 160.0 }\n  ]\n}"
+        }
+      }
+    }
+  ]
+}

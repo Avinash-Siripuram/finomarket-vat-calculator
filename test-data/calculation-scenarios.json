@@ -1,0 +1,314 @@
+[
+  {
+    "id": "s-01",
+    "description": "Domestic LATAM: Mexico to Mexico, physical, B2C -> 16% Mexican IVA",
+    "request": { "sellerCountry": "MX", "buyerCountry": "MX", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "MXN" },
+    "expected": { "taxRate": 16.0, "taxJurisdiction": "MX", "taxAmount": 16.0, "totalAmount": 116.0 }
+  },
+  {
+    "id": "s-02",
+    "description": "Domestic LATAM: Brazil to Brazil, digital, B2C -> 17% simplified Brazilian rate",
+    "request": { "sellerCountry": "BR", "buyerCountry": "BR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "BRL" },
+    "expected": { "taxRate": 17.0, "taxJurisdiction": "BR", "taxAmount": 34.0, "totalAmount": 234.0 }
+  },
+  {
+    "id": "s-03",
+    "description": "Domestic LATAM: Colombia to Colombia, services, B2B -> 19% (domestic B2B still charged)",
+    "request": { "sellerCountry": "CO", "buyerCountry": "CO", "productType": "SERVICES", "transactionType": "B2B", "netAmount": 300.0, "currency": "USD" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "CO", "taxAmount": 57.0, "totalAmount": 357.0 }
+  },
+  {
+    "id": "s-04",
+    "description": "Domestic LATAM: Chile to Chile, physical, B2C -> 19% Chilean IVA",
+    "request": { "sellerCountry": "CL", "buyerCountry": "CL", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 500.0, "currency": "CLP" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "CL", "taxAmount": 95.0, "totalAmount": 595.0 }
+  },
+  {
+    "id": "s-05",
+    "description": "Domestic EU: UK to UK, digital, B2C -> 20% UK VAT",
+    "request": { "sellerCountry": "UK", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "GBP" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "UK", "taxAmount": 20.0, "totalAmount": 120.0 }
+  },
+  {
+    "id": "s-06",
+    "description": "Domestic EU: Germany to Germany, physical, B2C -> 19% German VAT",
+    "request": { "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 250.0, "currency": "EUR" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "DE", "taxAmount": 47.5, "totalAmount": 297.5 }
+  },
+  {
+    "id": "s-07",
+    "description": "Domestic EU: Spain to Spain, services, B2C -> 21% Spanish VAT",
+    "request": { "sellerCountry": "ES", "buyerCountry": "ES", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 80.0, "currency": "EUR" },
+    "expected": { "taxRate": 21.0, "taxJurisdiction": "ES", "taxAmount": 16.8, "totalAmount": 96.8 }
+  },
+  {
+    "id": "s-08",
+    "description": "Domestic EU: France to France, physical, B2B -> 20% (domestic B2B still charged)",
+    "request": { "sellerCountry": "FR", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 1000.0, "currency": "EUR" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "FR", "taxAmount": 200.0, "totalAmount": 1200.0 }
+  },
+  {
+    "id": "s-09",
+    "description": "LATAM cross-border: Mexico to Brazil, physical, B2C -> 0% export",
+    "request": { "sellerCountry": "MX", "buyerCountry": "BR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 400.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 400.0 }
+  },
+  {
+    "id": "s-10",
+    "description": "LATAM cross-border: Brazil to Colombia, digital, B2C -> 0% (digital destination rule only applies to EU buyers)",
+    "request": { "sellerCountry": "BR", "buyerCountry": "CO", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 150.0, "currency": "BRL" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 150.0 }
+  },
+  {
+    "id": "s-11",
+    "description": "LATAM cross-border: Colombia to Chile, services, B2B -> 0% export",
+    "request": { "sellerCountry": "CO", "buyerCountry": "CL", "productType": "SERVICES", "transactionType": "B2B", "netAmount": 600.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 600.0 }
+  },
+  {
+    "id": "s-12",
+    "description": "LATAM cross-border: Chile to Mexico, physical, B2B -> 0% export",
+    "request": { "sellerCountry": "CL", "buyerCountry": "MX", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 900.0, "currency": "CLP" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 900.0 }
+  },
+  {
+    "id": "s-13",
+    "description": "LATAM to EU: Mexico to UK, physical, B2C -> 0% (buyer pays import VAT)",
+    "request": { "sellerCountry": "MX", "buyerCountry": "UK", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 100.0 }
+  },
+  {
+    "id": "s-14",
+    "description": "LATAM to EU: Mexico to Germany, digital, B2C -> 19% German VAT (digital destination rule)",
+    "request": { "sellerCountry": "MX", "buyerCountry": "DE", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "USD" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "DE", "taxAmount": 19.0, "totalAmount": 119.0 }
+  },
+  {
+    "id": "s-15",
+    "description": "LATAM to EU: Brazil to Spain, digital, B2C -> 21% Spanish VAT",
+    "request": { "sellerCountry": "BR", "buyerCountry": "ES", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "EUR" },
+    "expected": { "taxRate": 21.0, "taxJurisdiction": "ES", "taxAmount": 42.0, "totalAmount": 242.0 }
+  },
+  {
+    "id": "s-16",
+    "description": "LATAM to EU: Colombia to France, digital, B2C -> 20% French VAT",
+    "request": { "sellerCountry": "CO", "buyerCountry": "FR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 300.0, "currency": "EUR" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "FR", "taxAmount": 60.0, "totalAmount": 360.0 }
+  },
+  {
+    "id": "s-17",
+    "description": "LATAM to EU: Chile to UK, digital, B2C -> 20% UK VAT",
+    "request": { "sellerCountry": "CL", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 50.0, "currency": "GBP" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "UK", "taxAmount": 10.0, "totalAmount": 60.0 }
+  },
+  {
+    "id": "s-18",
+    "description": "LATAM to EU: Brazil to France, physical, B2C -> 0% (buyer pays import VAT)",
+    "request": { "sellerCountry": "BR", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 250.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 250.0 }
+  },
+  {
+    "id": "s-19",
+    "description": "LATAM to EU: Colombia to Germany, services, B2C -> 0% export",
+    "request": { "sellerCountry": "CO", "buyerCountry": "DE", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 100.0 }
+  },
+  {
+    "id": "s-20",
+    "description": "LATAM to EU: Mexico to Spain, digital, B2B -> 0% reverse charge",
+    "request": { "sellerCountry": "MX", "buyerCountry": "ES", "productType": "DIGITAL", "transactionType": "B2B", "netAmount": 500.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 500.0 }
+  },
+  {
+    "id": "s-21",
+    "description": "LATAM to EU: Chile to Germany, physical, B2B -> 0% (buyer pays import VAT)",
+    "request": { "sellerCountry": "CL", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 800.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 800.0 }
+  },
+  {
+    "id": "s-22",
+    "description": "EU to EU B2C: UK to Germany, physical -> 19% German VAT (destination-based)",
+    "request": { "sellerCountry": "UK", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "DE", "taxAmount": 19.0, "totalAmount": 119.0 }
+  },
+  {
+    "id": "s-23",
+    "description": "EU to EU B2C: Germany to France, digital -> 20% French VAT",
+    "request": { "sellerCountry": "DE", "buyerCountry": "FR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 60.0, "currency": "EUR" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "FR", "taxAmount": 12.0, "totalAmount": 72.0 }
+  },
+  {
+    "id": "s-24",
+    "description": "EU to EU B2C: Spain to UK, digital -> 20% UK VAT",
+    "request": { "sellerCountry": "ES", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 90.0, "currency": "GBP" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "UK", "taxAmount": 18.0, "totalAmount": 108.0 }
+  },
+  {
+    "id": "s-25",
+    "description": "EU to EU B2C: France to Spain, physical -> 21% Spanish VAT",
+    "request": { "sellerCountry": "FR", "buyerCountry": "ES", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 120.0, "currency": "EUR" },
+    "expected": { "taxRate": 21.0, "taxJurisdiction": "ES", "taxAmount": 25.2, "totalAmount": 145.2 }
+  },
+  {
+    "id": "s-26",
+    "description": "EU to EU B2C: Germany to UK, services -> 20% UK VAT",
+    "request": { "sellerCountry": "DE", "buyerCountry": "UK", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 200.0, "currency": "GBP" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "UK", "taxAmount": 40.0, "totalAmount": 240.0 }
+  },
+  {
+    "id": "s-27",
+    "description": "EU to EU B2C: UK to France, digital -> 20% French VAT",
+    "request": { "sellerCountry": "UK", "buyerCountry": "FR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 75.0, "currency": "EUR" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "FR", "taxAmount": 15.0, "totalAmount": 90.0 }
+  },
+  {
+    "id": "s-28",
+    "description": "EU to EU B2B: Germany to France, physical -> 0% reverse charge",
+    "request": { "sellerCountry": "DE", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 1000.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 1000.0 }
+  },
+  {
+    "id": "s-29",
+    "description": "EU to EU B2B: Spain to Germany, digital -> 0% reverse charge",
+    "request": { "sellerCountry": "ES", "buyerCountry": "DE", "productType": "DIGITAL", "transactionType": "B2B", "netAmount": 450.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 450.0 }
+  },
+  {
+    "id": "s-30",
+    "description": "EU to EU B2B: UK to Spain, services -> 0% reverse charge",
+    "request": { "sellerCountry": "UK", "buyerCountry": "ES", "productType": "SERVICES", "transactionType": "B2B", "netAmount": 700.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 700.0 }
+  },
+  {
+    "id": "s-31",
+    "description": "EU to EU B2B: France to UK, physical -> 0% reverse charge",
+    "request": { "sellerCountry": "FR", "buyerCountry": "UK", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 300.0, "currency": "GBP" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 300.0 }
+  },
+  {
+    "id": "s-32",
+    "description": "EU to LATAM: UK to Mexico, physical, B2C -> 0% export",
+    "request": { "sellerCountry": "UK", "buyerCountry": "MX", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 150.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 150.0 }
+  },
+  {
+    "id": "s-33",
+    "description": "EU to LATAM: Germany to Brazil, digital, B2C -> 0% (digital destination rule applies to EU buyers only)",
+    "request": { "sellerCountry": "DE", "buyerCountry": "BR", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 200.0 }
+  },
+  {
+    "id": "s-34",
+    "description": "EU to LATAM: Spain to Colombia, services, B2C -> 0% export",
+    "request": { "sellerCountry": "ES", "buyerCountry": "CO", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 90.0, "currency": "USD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 90.0 }
+  },
+  {
+    "id": "s-35",
+    "description": "EU to LATAM: France to Chile, physical, B2B -> 0% export",
+    "request": { "sellerCountry": "FR", "buyerCountry": "CL", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 400.0, "currency": "EUR" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 400.0 }
+  },
+  {
+    "id": "s-36",
+    "description": "Reduced rate: UK books, domestic B2C -> 0% (UK zero-rates books)",
+    "request": { "sellerCountry": "UK", "buyerCountry": "UK", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 50.0, "currency": "GBP", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "UK", "taxAmount": 0.0, "totalAmount": 50.0 }
+  },
+  {
+    "id": "s-37",
+    "description": "Reduced rate: German books, domestic B2C -> 7%",
+    "request": { "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 40.0, "currency": "EUR", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 7.0, "taxJurisdiction": "DE", "taxAmount": 2.8, "totalAmount": 42.8 }
+  },
+  {
+    "id": "s-38",
+    "description": "Reduced rate: Spanish books, domestic B2C -> 4%",
+    "request": { "sellerCountry": "ES", "buyerCountry": "ES", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 30.0, "currency": "EUR", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 4.0, "taxJurisdiction": "ES", "taxAmount": 1.2, "totalAmount": 31.2 }
+  },
+  {
+    "id": "s-39",
+    "description": "Reduced rate: French books, domestic B2C -> 5.5%",
+    "request": { "sellerCountry": "FR", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 20.0, "currency": "EUR", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 5.5, "taxJurisdiction": "FR", "taxAmount": 1.1, "totalAmount": 21.1 }
+  },
+  {
+    "id": "s-40",
+    "description": "Reduced rate: UK food, domestic B2C -> 0%",
+    "request": { "sellerCountry": "UK", "buyerCountry": "UK", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 60.0, "currency": "GBP", "productCategory": "FOOD" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "UK", "taxAmount": 0.0, "totalAmount": 60.0 }
+  },
+  {
+    "id": "s-41",
+    "description": "Reduced rate: German food, domestic B2C -> 7%",
+    "request": { "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 80.0, "currency": "EUR", "productCategory": "FOOD" },
+    "expected": { "taxRate": 7.0, "taxJurisdiction": "DE", "taxAmount": 5.6, "totalAmount": 85.6 }
+  },
+  {
+    "id": "s-42",
+    "description": "Reduced rate: Spanish food, domestic B2C -> 10%",
+    "request": { "sellerCountry": "ES", "buyerCountry": "ES", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR", "productCategory": "FOOD" },
+    "expected": { "taxRate": 10.0, "taxJurisdiction": "ES", "taxAmount": 10.0, "totalAmount": 110.0 }
+  },
+  {
+    "id": "s-43",
+    "description": "Reduced rate: French food, domestic B2C -> 5.5%",
+    "request": { "sellerCountry": "FR", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 200.0, "currency": "EUR", "productCategory": "FOOD" },
+    "expected": { "taxRate": 5.5, "taxJurisdiction": "FR", "taxAmount": 11.0, "totalAmount": 211.0 }
+  },
+  {
+    "id": "s-44",
+    "description": "Reduced rate cross-border: France to Germany, books, B2C -> German reduced rate 7% (destination-based)",
+    "request": { "sellerCountry": "FR", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 7.0, "taxJurisdiction": "DE", "taxAmount": 7.0, "totalAmount": 107.0 }
+  },
+  {
+    "id": "s-45",
+    "description": "Reduced rate fallback: Mexican books, domestic B2C -> standard 16% (no LATAM reduced rates in prototype)",
+    "request": { "sellerCountry": "MX", "buyerCountry": "MX", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "MXN", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 16.0, "taxJurisdiction": "MX", "taxAmount": 16.0, "totalAmount": 116.0 }
+  },
+  {
+    "id": "s-46",
+    "description": "Currency reporting: Germany domestic B2C 100 EUR, reported in USD",
+    "request": { "sellerCountry": "DE", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "EUR", "reportingCurrency": "USD" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "DE", "taxAmount": 19.0, "totalAmount": 119.0, "reportingTaxAmount": 20.65 }
+  },
+  {
+    "id": "s-47",
+    "description": "Currency reporting: Mexico to UK digital B2C 100 USD, reported in GBP",
+    "request": { "sellerCountry": "MX", "buyerCountry": "UK", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 100.0, "currency": "USD", "reportingCurrency": "GBP" },
+    "expected": { "taxRate": 20.0, "taxJurisdiction": "UK", "taxAmount": 20.0, "totalAmount": 120.0, "reportingTaxAmount": 15.8 }
+  },
+  {
+    "id": "s-48",
+    "description": "Currency reporting: Brazil domestic B2C 500 BRL, reported in EUR",
+    "request": { "sellerCountry": "BR", "buyerCountry": "BR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 500.0, "currency": "BRL", "reportingCurrency": "EUR" },
+    "expected": { "taxRate": 17.0, "taxJurisdiction": "BR", "taxAmount": 85.0, "totalAmount": 585.0, "reportingTaxAmount": 14.48 }
+  },
+  {
+    "id": "s-49",
+    "description": "Large COP amount: Colombia domestic digital B2C",
+    "request": { "sellerCountry": "CO", "buyerCountry": "CO", "productType": "DIGITAL", "transactionType": "B2C", "netAmount": 1000000.0, "currency": "COP" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "CO", "taxAmount": 190000.0, "totalAmount": 1190000.0 }
+  },
+  {
+    "id": "s-50",
+    "description": "Large CLP amount: Chile domestic services B2C",
+    "request": { "sellerCountry": "CL", "buyerCountry": "CL", "productType": "SERVICES", "transactionType": "B2C", "netAmount": 500000.0, "currency": "CLP" },
+    "expected": { "taxRate": 19.0, "taxJurisdiction": "CL", "taxAmount": 95000.0, "totalAmount": 595000.0 }
+  },
+  {
+    "id": "s-51",
+    "description": "Reduced rate cross-border: Spain to France, food, B2C -> French reduced rate 5.5%",
+    "request": { "sellerCountry": "ES", "buyerCountry": "FR", "productType": "PHYSICAL", "transactionType": "B2C", "netAmount": 150.0, "currency": "EUR", "productCategory": "FOOD" },
+    "expected": { "taxRate": 5.5, "taxJurisdiction": "FR", "taxAmount": 8.25, "totalAmount": 158.25 }
+  },
+  {
+    "id": "s-52",
+    "description": "Category vs reverse charge: UK to Germany, books, B2B -> 0% reverse charge wins",
+    "request": { "sellerCountry": "UK", "buyerCountry": "DE", "productType": "PHYSICAL", "transactionType": "B2B", "netAmount": 100.0, "currency": "EUR", "productCategory": "BOOKS" },
+    "expected": { "taxRate": 0.0, "taxJurisdiction": "NONE", "taxAmount": 0.0, "totalAmount": 100.0 }
+  }
+]
