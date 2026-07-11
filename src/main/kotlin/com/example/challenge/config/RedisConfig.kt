@@ -13,8 +13,9 @@ object RedisConfig {
     fun init(config: ApplicationConfig) {
         val host = config.property("redis.host").getString()
         val port = config.property("redis.port").getString().toInt()
+        val password = config.propertyOrNull("redis.password")?.getString()?.takeIf { it.isNotBlank() }
 
-        logger.info("Initializing Redis pool at {}:{}", host, port)
+        logger.info("Initializing Redis pool at {}:{} (auth: {})", host, port, if (password != null) "enabled" else "disabled")
 
         val poolConfig = JedisPoolConfig().apply {
             maxTotal = 20
@@ -25,7 +26,12 @@ object RedisConfig {
         }
 
         try {
-            pool = JedisPool(poolConfig, host, port, 2000)
+            // Managed Redis (Railway, etc.) rejects unauthenticated commands with NOAUTH
+            pool = if (password != null) {
+                JedisPool(poolConfig, host, port, 2000, password)
+            } else {
+                JedisPool(poolConfig, host, port, 2000)
+            }
             // Test connection
             getResource().use { jedis ->
                 val ping = jedis.ping()
