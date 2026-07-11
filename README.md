@@ -179,7 +179,10 @@ Liveness check.
 
 ## What I'd Improve With More Time
 
-* **Rate versioning with effective dates** (`valid_from`/`valid_to`) so historical audits use the rate in force at transaction time.
+* **Authentication & authorization**: API keys/OAuth per merchant with role-based permissions, so multiple merchants (like FinoMarket) can use the service in isolation.
+* **Better data governance**: rate versioning with effective dates (`valid_from`/`valid_to`) so historical audits use the rate in force at transaction time, plus retention policies for audit logs.
+* **Stronger schema validations** at the API boundary (max amounts, currency-jurisdiction consistency checks, request size limits).
+* **Notifications**: alert merchants (email/webhook) when a batch audit finds compliance discrepancies above a threshold.
 * **VAT number validation** (VIES lookup) before applying B2B reverse charge.
 * Real FX provider with rates locked at transaction time; currency-aware decimal places (0 for CLP/COP).
 * Distance-selling threshold tracking per seller/country (the €10,000 rule) and OSS/IOSS registration modeling.
